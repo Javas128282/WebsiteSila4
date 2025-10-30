@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buku Mini</title>
   <style>
-    /* 🔹 Reset dasar */
+    /* 🔹 Reset & Font */
     * {
       margin: 0;
       padding: 0;
@@ -21,45 +21,97 @@
       flex-direction: column;
     }
 
-    /* 🔹 Navigasi */
+    /* 🔹 Navbar Utama */
     .navbar {
-      background: #bd2f16;
+      background: linear-gradient(90deg, #b71c1c, #d32f2f);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      padding: 0.8rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: background 0.3s ease;
     }
 
+    .navbar:hover {
+      background: linear-gradient(90deg, #a51818, #c62828);
+    }
+
+    /* 🔹 Logo / Judul Navbar */
+    .navbar .brand {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .navbar .brand span {
+      background: #fff;
+      color: #b71c1c;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    /* 🔹 Tautan Navigasi */
     .nav-links {
       display: flex;
-      gap: 1.5rem;
       list-style: none;
+      gap: 1.5rem;
     }
 
     .nav-links a {
       text-decoration: none;
       color: #fff;
       font-weight: 500;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 4px;
     }
 
-    .nav-links a:hover, .nav-links a.active {
+    /* Efek garis bawah animasi */
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #ffe380;
+      bottom: 0;
+      left: 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
       color: #ffe380;
       text-shadow: 0 0 5px rgba(255,255,255,0.6);
     }
 
+    /* 🔹 Tombol Menu Mobile */
     .menu-toggle {
       display: none;
       color: white;
       font-size: 1.8rem;
       cursor: pointer;
+      transition: 0.3s;
     }
 
-    /* 🔹 Header Hero */
+    .menu-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* 🔹 Hero Section */
     .hero {
       text-align: center;
       padding: 3rem 1rem 2rem;
@@ -80,7 +132,7 @@
       font-style: italic;
     }
 
-    /* 🔹 Konten utama */
+    /* 🔹 Konten Utama */
     .content {
       flex: 1;
       padding: 1.5rem;
@@ -106,6 +158,15 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
+    /* 🔹 Footer */
+    footer {
+      background: #d32f2f;
+      color: #fff;
+      text-align: center;
+      padding: 0.7rem 0;
+      font-size: 0.9rem;
+    }
+
     /* 🔹 Animasi */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
@@ -122,13 +183,15 @@
       .nav-links {
         display: none;
         flex-direction: column;
-        background: #df1212;
+        background: #b71c1c;
         position: absolute;
         top: 70px;
         right: 0;
-        width: 200px;
+        width: 220px;
         border-radius: 0 0 10px 10px;
         overflow: hidden;
+        padding: 1rem 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       }
 
       .nav-links.active {
@@ -139,35 +202,32 @@
         display: block;
       }
 
+      .brand span {
+        display: none; /* sembunyikan label kecil di layar sempit */
+      }
+
       iframe {
         height: 70vh;
       }
     }
-
-    footer {
-      background: #e42b25;
-      color: #fff;
-      text-align: center;
-      padding: 0.7rem 0;
-      font-size: 0.9rem;
-    }
   </style>
 </head>
 <body>
-  <!-- 🔹 Navigasi -->
+  <!-- 🔹 Navbar -->
   <nav class="navbar">
+    <div class="brand">📘 <span>Mini</span>Book</div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html" class="active">Beranda</a></li>
       <li><a href="identitas.html">Identitas Kelompok</a></li>
       <li><a href="http://192.168.132.121:5000">Game Simulasi Voting</a></li>
       <li><a href="http://192.168.132.121:8000">Form Kepuasan Pengguna</a></li>
-      <li><a href="Dokumentasi.html">Dokumentasi Proses Pembuatan</a></li>
-      <li><a href="posterInfo.html">Produk Poster dan Infografis Digital</a></li>
+      <li><a href="Dokumentasi.html">Dokumentasi</a></li>
+      <li><a href="posterInfo.html">Poster & Infografis</a></li>
     </ul>
     <div class="menu-toggle" id="menu-toggle">☰</div>
   </nav>
 
-  <!-- 🔹 Hero Section -->
+  <!-- 🔹 Hero -->
   <header class="hero">
     <h1>Produk Buku Mini</h1>
     <p>“Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan.”</p>
@@ -178,8 +238,12 @@
     <iframe src="https://simplebooklet.com/pemimpin" title="Simplebooklet Pemimpin" allowfullscreen></iframe>
   </main>
 
+  <!-- 🔹 Footer -->
+  <footer>
+    © 2025 Kelompok Sila Ke-4 — Buku Mini Pancasila
+  </footer>
 
-  <!-- 🔹 JavaScript Menu -->
+  <!-- 🔹 JS Menu -->
   <script>
     const menuToggle = document.getElementById("menu-toggle");
     const navLinks = document.getElementById("nav-links");
